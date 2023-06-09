@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+.block__abs{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.formEnter{
+    width: 320px;
+    height: 320px;
+    padding: 10px;
+    color: #2F2F2F;
+    background: #F3F3F3;
+    border-radius: 20px;
+}
+
+.form_head{
+    font-size: 24px;
+    text-align: center;
+}
+
+.form_inputBlock{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form_input {
+    display: block;
+    padding: 20px 10px 10px;
+    width: calc(100% - 20px);
+    font-size: 14px;
+    border: 1px solid #D0D0D0;
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form_input:focus {
+    color: #2F2F2F;
+    border-color: #BBD6FE;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(187, 214, 254, 0.3);
+}
+
+.form_label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+    color: #2F2F2F;
+}
+
+.form_input::-moz-placeholder {
+    color: transparent;
+}
+
+.form_input::placeholder {
+    color: transparent;
+}
+
+.form_input:focus~.form_label, .form_input:not(:placeholder-shown)~.form_label{
+    opacity: .65;
+    transform: scale(.85) translateY(-.75rem) translateX(.15rem);
+}
+
+.btn{
+    width: 320px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn:hover{
+    opacity: 0.8;
+}
+
+.btn__submit:focus{
+    outline: rgba(187, 214, 254, 0.5);
+}
+
+.btn__submit{
+    background: #BBD6FE;
+    color: #F3F3F3;
+}
