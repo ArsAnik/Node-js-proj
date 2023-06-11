@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Личный кабинет ученика</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="reset.css" rel="stylesheet">
+</head>
+<body>
+    <div class="mainBlock">
+        <div class="personBlock">
+            Мои данные
+            <img src="images/person.png" class="personBlock_img">
+        </div>
+        <div class="balance balance__positive">
+            <span class="balance_text">Ваш баланс:</span>
+            <span class="balance_sum">1000 руб.</span>
+            <a href="#" class="linkBlock linkBlock_pay">
+                Оплатить
+            </a>
+        </div>
+        <div class="studentInf">
+            Иванов Иван, 9 класс
+        </div>
+        <div class="scheduleBlock">
+            <table class="scheduleBlock_table">
+                <thead class="scheduleBlock_head">
+                <tr>
+                    <th>Дата</th>
+                    <th>День недели</th>
+                    <th>Время</th>
+                    <th>Предмет</th>
+                    <th>Репетитор</th>
+                    <th>Особенности</th>
+                    <th>Ссылка на занятие</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="scheduleBlock_lesson scheduleBlock_lesson__done">
+                    <td>05.05.23</td>
+                    <td>Вторник</td>
+                    <td>12:30</td>
+                    <td>Физика</td>
+                    <td>Иван Иванов</td>
+                    <td>разовое</td>
+                    <td class="scheduleBlock_link">
+                        <a href="#" class="linkBlock">Перейти к занятию</a>
+                    </td>
+                </tr>
+                <tr class="scheduleBlock_lesson scheduleBlock_lesson__canceled">
+                    <td>12.12.23</td>
+                    <td>Воскресенье</td>
+                    <td>11:00</td>
+                    <td>Русский язык</td>
+                    <td>Василий Васильевич</td>
+                    <td>отменён</td>
+                    <td class="scheduleBlock_link">
+                        <a href="#" class="linkBlock">Перейти к занятию</a>
+                    </td>
+                </tr>
+                <tr class="scheduleBlock_lesson">
+                    <td>12.12.23</td>
+                    <td>Воскресенье</td>
+                    <td>11:00</td>
+                    <td>Русский язык</td>
+                    <td>Василий Васильевич</td>
+                    <td>нет</td>
+                    <td class="scheduleBlock_link">
+                        <a href="#" class="linkBlock">Перейти к занятию</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="navigationBlock">
+            <a class="linkBlock navigationBlock_left">< Предыдущая неделя</a>
+            <a class="linkBlock navigationBlock_right">Будущая неделя ></a>
+        </div>
+    </div>
+</body>
+</html>
