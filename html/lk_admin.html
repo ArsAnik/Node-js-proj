@@ -3,24 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Вход в панель администратора</title>
+  <title>Панель администратора</title>
   <link href="style.css" rel="stylesheet">
   <link href="reset.css" rel="stylesheet">
 </head>
 <body>
-<div class="block__abs formEnter form">
-  <h4 class="form_head">Вход в панель администратора</h4>
-  <form>
-    <div class="form_inputBlock">
-      <input type="text" class="form_input" id="login_admin" placeholder=" " required>
-      <label for="login_admin" class="form_label">Логин</label>
-    </div>
-    <div class="form_inputBlock">
-      <input type="password" class="form_input" id="password_admin" placeholder=" " required>
-      <label for="password_admin" class="form_label">Пароль</label>
-    </div>
-    <button type="submit" class="btn btn__submit">войти</button>
-  </form>
+<div class="mainBlock">
+  <a href="#" class="linkBlock logOutBtn">
+    Выйти
+  </a>
+  <a href="#" class="linkBlock addStudentBtn">
+    Добавить ученика +
+  </a>
+  <div class="tableBlock">
+    <table class="tableBlock_table">
+      <thead class="tableBlock_head">
+      <tr>
+        <th>Ученик</th>
+        <th>E-mail</th>
+        <th>тел. родителей</th>
+        <th>тел. ученика</th>
+      </tr>
+      </thead>
+      <tbody class="tableBlock_body">
+      <tr>
+        <td>Иванов Иван</td>
+        <td>mail@mail.com</td>
+        <td>89999999999</td>
+        <td>88999999999</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </body>
 </html>

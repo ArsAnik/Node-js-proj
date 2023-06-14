@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
 
 *{
     font-family: 'Raleway', sans-serif;
@@ -205,45 +206,47 @@
     font-weight: bold;
 }
 
-.scheduleBlock{
+.tableBlock{
     margin: 180px auto 0;
     width: 1400px;
 }
 
-.scheduleBlock_table{
+.tableBlock_table{
     width: 100%;
 }
 
-.scheduleBlock_head{
+.tableBlock_head{
     text-align: center;
     background: #E4F2FF;
 }
 
-.scheduleBlock_head th{
+.tableBlock_head th{
     padding: 20px;
     font-weight: bold;
     font-size: 20px;
 }
 
-.scheduleBlock_lesson__done{
+.tableBlock_lesson__done{
     background: #d4fdb6;
 }
 
-.scheduleBlock_lesson__canceled{
+.tableBlock_lesson__canceled{
     background: #ffc8c8;
 }
 
-.scheduleBlock_lesson td{
+.tableBlock_body td{
     padding: 10px;
     font-size: 18px;
+    font-family: 'Roboto', sans-serif;
     border: 1px solid #D9D9D9;
+    color: #3d3d3d;
 }
 
-.scheduleBlock_link{
+.tableBlock_link{
     padding: 0 !important;
 }
 
-.scheduleBlock_link .linkBlock{
+.tableBlock_link .linkBlock{
     height: 100%;
     color: #007CEE;
 }
@@ -263,27 +266,52 @@
     border-radius: 10px;
 }
 
+.logOutBtn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 94px;
+    height: 34px;
+    color: #fff;
+    border-radius: 10px;
+    background: #FF5858;
+}
+
+.addStudentBtn{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 320px;
+    height: 74px;
+    background: #BBD6FE;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 @media (max-width: 1439px){
-    .scheduleBlock{
+    .tableBlock{
         width: 1000px;
     }
 
-    .scheduleBlock_head th{
+    .tableBlock_head th{
         font-size: 16px;
     }
 
-    .scheduleBlock_lesson td{
+    .tableBlock_body td{
         font-size: 14px;
     }
 }
 
 @media (max-width: 1023px) {
-    .scheduleBlock{
+    .tableBlock{
         overflow-y: hidden;
         overflow-x: scroll;
         width: 530px;
     }
-    .scheduleBlock_link .linkBlock{
+    .tableBlock_link .linkBlock{
         padding: 10px;
     }
 }
@@ -302,7 +330,7 @@
     .studentInf {
         top: 250px;
     }
-    .scheduleBlock{
+    .tableBlock{
         margin: 260px auto 0;
         width: 320px;
     }
@@ -314,5 +342,9 @@
         padding: 10px;
         font-size: 10px;
         font-weight: bold;
+    }
+    .addStudentBtn{
+        top: 100px;
+        height: 60px;
     }
 }
