@@ -1,0 +1,32 @@
+<div class="mainBlock">
+  <a href="/admin/logout" class="linkBlock logOutBtn">
+    Выйти
+  </a>
+  <a href="/admin/addStudent" class="linkBlock addStudentBtn">
+    Добавить ученика +
+  </a>
+    {{#if students}}
+  <div class="tableBlock">
+    <table class="tableBlock_table">
+      <thead class="tableBlock_head">
+      <tr>
+        <th>Ученик</th>
+        <th>E-mail</th>
+        <th>тел. родителей</th>
+        <th>тел. ученика</th>
+      </tr>
+      </thead>
+      <tbody class="tableBlock_body">
+      {{#each students}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.personal_phone}}</td>
+        <td>{{this.parent_phone}}</td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+    {{/if}}
+</div>

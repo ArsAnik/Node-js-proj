@@ -125,13 +125,14 @@
 .mainBlock{
     position: absolute;
     width: 100%;
+    padding: 0 0 20px;
     min-height: 100% !important;
 }
 
 .personBlock{
     position: absolute;
     top: 47px;
-    right: 20px;
+    right: 30px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -191,6 +192,7 @@
     align-items: center;
     text-transform: uppercase;
     cursor: pointer;
+    color: #FFF;
 }
 
 .linkBlock:hover{
@@ -269,6 +271,7 @@
 
 .tableBlock_link .linkBlock{
     height: 100%;
+    text-align: center;
     color: #007CEE;
 }
 
@@ -310,6 +313,66 @@
     color: #fff;
     font-size: 20px;
     font-weight: bold;
+}
+
+.errorBlock{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px 50px;
+    text-align: center;
+    background: #FF5858;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.errorBlock_head{
+    font-weight: bold;
+}
+
+.errorBlock_buttonBack{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #ad0000;
+    border-radius: 10px;
+}
+
+#errorPopUp{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 60px);
+    width: 320px;
+    padding: 10px 20px;
+    text-align: center;
+    background: #FF5858;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    z-index: -1;
+    opacity: 0;
+    cursor: default;
+}
+
+.active{
+    animation-duration: 4s;
+    animation-name: slideIn;
+}
+
+@keyframes slideIn {
+    100% {
+        z-index: 100;
+        opacity: 1;
+    }
+
+    0% {
+        z-index: -1;
+        opacity: 0;
+    }
 }
 
 @media (max-width: 1439px){

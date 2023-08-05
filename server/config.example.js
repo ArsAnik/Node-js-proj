@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: 'localhost || 127.0.0.1',
-    PORT: 8888,
-    DBUSER: 'db-user',
-    DBPASSWORD: 'db-password',
-    DBNAME: 'dbname',
-    jwt: 'your jwt key'
+    HOST: 'localhost',
+    PORT: 5000,
+    DBUSER: 'root',
+    DBPASSWORD: '',
+    DBNAME: 'tutor_platform',
+    JWTKEY: 'JWT_KEY'
 }

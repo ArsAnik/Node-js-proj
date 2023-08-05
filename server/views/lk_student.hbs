@@ -1,0 +1,58 @@
+<div class="mainBlock">
+        <div class="personBlock">
+            Мои данные
+            <img src="/images/person.png" class="personBlock_img">
+        </div>
+        <div class="balance balance__positive">
+            <span class="balance_text">Ваш баланс:</span>
+            <span class="balance_sum">1000 руб.</span>
+            <a href="#" class="linkBlock linkBlock_pay">
+                Оплатить
+            </a>
+        </div>
+        <div class="studentInf">
+            {{student_inf.name}}
+        </div>
+        <div class="tableBlock">
+            <table class="tableBlock_table">
+                <thead class="tableBlock_head">
+                <tr>
+                    <th>Дата</th>
+                    <th>День недели</th>
+                    <th>Время</th>
+                    <th>Предмет</th>
+                    <th>Репетитор</th>
+                    <th>Особенности</th>
+                    <th>Ссылка на занятие</th>
+                </tr>
+                </thead>
+                <tbody class="tableBlock_body">
+                {{#each lessons}}
+                    {{#if this.is_done}}
+                        <tr class="tableBlock_lesson tableBlock_lesson__done">
+                    {{else if this.is_canceled}}
+                        <tr class="tableBlock_lesson tableBlock_lesson__canceled">
+                    {{else}}
+                        <tr class="tableBlock_lesson">
+                    {{/if}}
+                        <td>{{this.day}}</td>
+                        <td>{{this.weekday}}</td>
+                        <td>{{this.time}}</td>
+                        <td>{{this.title}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.feature}}</td>
+                        <td class="tableBlock_link">
+                            <a href="{{this.link}}" class="linkBlock">Перейти к занятию</a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="navigationBlock">
+            <a href="{{linkPrevWeek}}" class="linkBlock navigationBlock_left">< Предыдущая неделя</a>
+            <a href="{{linkNextWeek}}" class="linkBlock navigationBlock_right">Будущая неделя ></a>
+        </div>
+    </div>
+</body>
+</html>

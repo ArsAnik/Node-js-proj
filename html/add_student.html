@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Добавление ученика</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="reset.css" rel="stylesheet">
+</head>
+<body>
+<div class="block__abs formEnter form formEnter__big">
+    <h4 class="form_head">Добавление ученика</h4>
+    <form>
+        <div class="form_inputBlock">
+            <input type="text" class="form_input" id="name" placeholder=" " required>
+            <label for="name" class="form_label">Имя ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="email" class="form_input" id="email" placeholder=" " required>
+            <label for="email" class="form_label">Email ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="tel" class="form_input" id="personal_phone" placeholder=" " required>
+            <label for="personal_phone" class="form_label">Телефон ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="tel" class="form_input" id="parent_phone" placeholder=" " required>
+            <label for="parent_phone" class="form_label">Телефон родителя</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="password" class="form_input" id="password" placeholder=" " required>
+            <label for="password" class="form_label">Пароль</label>
+        </div>
+        <div class="form_inputBlock">
+            <label for="course" class="select_label">Выберите класс:</label>
+            <select id="course" class="form_select" required>
+                <option value="1">11</option>
+                <option value="2">10</option>
+                <option value="3">9</option>
+                <option value="4">8</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn__submit">Добавить</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div class="block__abs formEnter form formEnter__big">
+    <h4 class="form_head">Добавление ученика</h4>
+    <form action="/admin/addStudent" method="POST">
+        <div class="form_inputBlock">
+            <input type="text" class="form_input" id="stud_name" placeholder=" " name="name" required>
+            <label for="stud_name" class="form_label">Имя ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="email" class="form_input" id="stud_email" placeholder=" " name="email" required>
+            <label for="stud_email" class="form_label">Email ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="tel" class="form_input phoneMask" id="stud_personal_phone" name="personal_phone" placeholder=" " required>
+            <label for="stud_personal_phone" class="form_label">Телефон ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="tel" class="form_input phoneMask" id="stud_parent_phone" name="parent_phone" placeholder=" " required>
+            <label for="stud_parent_phone" class="form_label">Телефон родителя</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="password" class="form_input" id="password" name="password" placeholder=" " required>
+            <label for="password" class="form_label">Пароль</label>
+        </div>
+        <div class="form_inputBlock">
+            <label for="course" class="select_label">Выберите класс:</label>
+            <select id="course" class="form_select" name="course" required>
+            {{#each course}}
+                <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn__submit">Добавить</button>
+    </form>
+</div>
