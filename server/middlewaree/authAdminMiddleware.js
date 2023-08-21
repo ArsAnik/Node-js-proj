@@ -7,7 +7,7 @@ module.exports = function (req, res, next){
     }
 
     try {
-        if(req.headers.cookie === undefined){
+        if(req.headers.authorization === undefined){
             next();
         }
         else{

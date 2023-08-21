@@ -14,7 +14,7 @@ module.exports = function (req, res, next){
         else{
             const token = req.headers.cookie.split('=')[1];
             const {id} = jwt.verify(token, JWTKEY);
-            return res.redirect('/student/panel/' + id + '/' + calc_days.calc_week());
+            return res.redirect('/student/panel/' + calc_days.calc_week());
         }
     }catch (e) {
         console.log(e);

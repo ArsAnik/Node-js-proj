@@ -20,8 +20,17 @@ router.get('/login',
     authStudentMiddleware,
     AuthController.show_login)
 
-router.get('/panel/:id/:wd', [
+router.get('/panel/:wd', [
     roleMiddleware(['student'])
     ], PanelController.show_panel)
+
+router.get('/payment', [
+    roleMiddleware(['student'])
+], PanelController.show_payment)
+
+///:periodStart/:periodEnd
+router.get('/history', [
+    roleMiddleware(['student'])
+], PanelController.show_history)
 
 module.exports = router

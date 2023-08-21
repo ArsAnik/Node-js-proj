@@ -106,6 +106,9 @@
     border: 0;
     text-transform: uppercase;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn:hover{
@@ -129,6 +132,65 @@
     min-height: 100% !important;
 }
 
+.returnButton{
+    margin: 20px auto;
+    top: 20px;
+    width: 120px;
+    background: #BBD6FE;
+    color: #fff;
+}
+
+.historyButton{
+    margin: 0 auto;
+    width: 200px;
+    background: #50cb6c;
+    color: #fff;
+}
+
+.paymentBlock{
+    display: flex;
+    width: 320px;
+    margin: 20px auto;
+    background: #dfdd;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.paymentBlock_text{
+    padding: 15px 12px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.paymentBlock_form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.paymentBlock_sum{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid #2F2F2F;
+    background: #fff;
+}
+
+.paymentBlock_btn{
+    margin: 15px auto;
+    width: 200px;
+    background: #50cb6c;
+    color: #fff;
+}
+
+.labelBlock{
+    margin: 0 auto;
+    width: 500px;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+}
+
 .personBlock{
     position: absolute;
     top: 47px;
@@ -145,6 +207,13 @@
     cursor: pointer;
 }
 
+.personBlock_name{
+    width: 70%;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .personBlock_img{
     width: 25px;
     height: 25px;
@@ -154,11 +223,12 @@
     position: relative;
     top: 20px;
     left: 20px;
-    width: 265px;
+    width: 285px;
     height: 98px;
     border-radius: 10px;
     font-size: 20px;
     background: #E4F2FF;
+    overflow: hidden;
 }
 
 .balance__positive{
@@ -202,36 +272,41 @@
 .linkBlock_pay{
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 10px;
     transform: translate(0, -50%);
-    width: 94px;
+    width: 115px;
     height: 34px;
     background: #82D84D;
     border-radius: 10px;
     font-size: 12px;
     color: #FFF;
-}
-
-.studentInf{
-    position: absolute;
-    top: 150px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 320px;
-    height: 74px;
-    background: #F3F3F3;
-    border-radius: 10px;
-    font-size: 24px;
-    color: #2F2F2F;
-    font-weight: bold;
+    text-align: center;
 }
 
 .tableBlock{
-    margin: 180px auto 0;
+    margin: 80px auto 20px;
     width: 1400px;
+}
+
+.tableBlock__payment{
+    margin-top: 20px;
+}
+
+.tableLegend{
+    padding-bottom: 10px;
+}
+
+.tableLegend_inf{
+    display: flex;
+    justify-items: center;
+    padding: 10px 0;
+}
+
+.tableLegend_colorBLock {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .tableBlock_table{
@@ -249,11 +324,11 @@
     font-size: 20px;
 }
 
-.tableBlock_lesson__done{
+.tableBlock_item__green, .tableLegend_colorBLock__done{
     background: #d4fdb6;
 }
 
-.tableBlock_lesson__canceled{
+.tableBlock_item__red, .tableLegend_colorBLock__canceled{
     background: #ffc8c8;
 }
 
@@ -411,12 +486,16 @@
         left: 0;
         margin: 0 auto;
     }
-    .studentInf {
-        top: 250px;
+    .labelBlock{
+        width: 240px;
+        font-size: 18px;
     }
     .tableBlock{
-        margin: 260px auto 0;
+        margin: 150px auto 0;
         width: 320px;
+    }
+    .tableBlock__payment{
+        margin-top: 20px;
     }
     .navigationBlock{
         width: 320px;

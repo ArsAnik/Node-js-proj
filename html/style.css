@@ -247,11 +247,11 @@
     font-size: 20px;
 }
 
-.tableBlock_lesson__done{
+.tableBlock_item__green{
     background: #d4fdb6;
 }
 
-.tableBlock_lesson__canceled{
+.tableBlock_item__red{
     background: #ffc8c8;
 }
 
