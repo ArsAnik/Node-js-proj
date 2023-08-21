@@ -28,7 +28,6 @@ router.get('/payment', [
     roleMiddleware(['student'])
 ], PanelController.show_payment)
 
-///:periodStart/:periodEnd
 router.get('/history', [
     roleMiddleware(['student'])
 ], PanelController.show_history)

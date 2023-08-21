@@ -157,7 +157,8 @@ class StudentPanelController {
                                     element.is_pay = !element.is_done;
                                     element.operation = element.is_done ? "оплата занятия: " + element.title : "пополнение баланса";
                                     element.sum = element.is_done ? "-" + element.price : "+" + element.sum;
-                                    element.date = calc_days.get_day(element.date);
+                                    element.dateForJS = element.date;
+                                    element.date = calc_days.get_day_with_year(element.date);
                                 }
                             );
                             return res.render("lk_student_history", {

@@ -3,8 +3,14 @@
         &#9668; Назад
     </a>
     <div class="dateBlock">
-        <span class="dateBlock_text">Выберите диапазон дат, за который хотите увидеть операции:</span>
-        <input type="date" class="dateBlock_input" id="dateInput" />
+        <a class="dateBlock_all" id="dateAll" href="#">За всё время</a>
+        <div class="dateBlock_period">
+            За период:<br/>
+            <input type="date" class="dateBlock_input" id="dateStart"/>
+            -
+            <input type="date" class="dateBlock_input" id="dateEnd"/>
+            <input type="submit" value="Готово" class="dateBlock_submit" id="dateSubmit"/>
+        </div>
     </div>
     <div class="tableBlock tableBlock__history">
         <table class="tableBlock_table">
@@ -18,9 +24,9 @@
             <tbody class="tableBlock_body">
             {{#each payments}}
                 {{#if this.is_pay}}
-                    <tr class="tableBlock_item tableBlock_item__green">
+                    <tr class="tableBlock_item tableBlock_item__green history_item" dvalue="{{this.dateForJS}}">
                 {{else}}
-                    <tr class="tableBlock_item tableBlock_item__red">
+                    <tr class="tableBlock_item tableBlock_item__red history_item" dvalue="{{this.dateForJS}}">
                 {{/if}}
                         <td>{{this.date}}</td>
                         <td>{{this.operation}}</td>

@@ -147,6 +147,45 @@
     color: #fff;
 }
 
+.dateBlock{
+    text-align: center;
+    padding: 10px;
+}
+
+.dateBlock_all, .dateBlock_period{
+    font-size: 18px;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 20px;
+    padding: 8px 10px;
+    background: #f1f7ff;
+    color: #007CEE;
+}
+
+.dateBlock_all{
+    width: 180px;
+}
+
+.dateBlock_period{
+    width: 300px;
+}
+
+.dateBlock_input{
+    width: 115px;
+}
+
+.dateBlock_submit{
+    padding: 5px;
+}
+
+.dateBlock_all:hover{
+    background: #c3d8fd;
+}
+
+.dateBlock_all.disabled:hover{
+    background: #F3F3F3;
+}
+
 .paymentBlock{
     display: flex;
     width: 320px;
@@ -292,6 +331,11 @@
     margin-top: 20px;
 }
 
+.tableBlock__history{
+    text-align: center;
+    margin-top: 20px;
+}
+
 .tableLegend{
     padding-bottom: 10px;
 }
@@ -322,6 +366,10 @@
     padding: 20px;
     font-weight: bold;
     font-size: 20px;
+}
+
+.tableBlock_item.hide{
+    display: none;
 }
 
 .tableBlock_item__green, .tableLegend_colorBLock__done{
@@ -495,6 +543,9 @@
         width: 320px;
     }
     .tableBlock__payment{
+        margin-top: 20px;
+    }
+    .tableBlock__history{
         margin-top: 20px;
     }
     .navigationBlock{
