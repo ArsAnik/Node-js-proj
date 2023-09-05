@@ -11,11 +11,11 @@ module.exports = function (roles){
             if(req.headers.cookie === undefined){
                 return res.redirect('/error/Пользователь не автаризован');
             }
-            const token = req.headers.cookie.split('=')[1];
-            const {role} = jwt.verify(token, JWTKEY);
-            if(!roles.includes(role)){
-                return res.status(403).redirect('/error/Ошибка доступа');
-            }
+            // const token = req.headers.cookie.split('=')[1];
+            // const {role} = jwt.verify(token, JWTKEY);
+            // if(!roles.includes(role)){
+            //     return res.status(403).redirect('/error/Ошибка доступа');
+            // }
             next();
         }catch (e) {
             console.log(e);

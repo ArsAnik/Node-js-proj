@@ -233,7 +233,7 @@
 .personBlock{
     position: absolute;
     top: 47px;
-    right: 30px;
+    right: 20px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -304,8 +304,18 @@
     color: #FFF;
 }
 
+.linkBlock.disabled{
+    cursor: default;
+    background: #3d3d3d;
+    opacity: .2;
+}
+
 .linkBlock:hover{
     opacity: .8;
+}
+
+.linkBlock.disabled:hover{
+    opacity: .2;
 }
 
 .linkBlock_pay{
@@ -524,6 +534,20 @@
 }
 
 @media (max-width: 550px) {
+    input[type="date"]:before {
+        content: attr(placeholder) !important;
+    }
+
+    input[type="date"]:focus:before {
+        content: '' !important;
+    }
+
+    input[type="date"] {
+        display: flex;
+    }
+    .historyButton{
+        margin-top: 20px;
+    }
     .personBlock{
         left: 50%;
         transform: translate(-50%, 0);

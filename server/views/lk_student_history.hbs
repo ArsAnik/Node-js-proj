@@ -1,14 +1,14 @@
 <div class="mainBlock">
-    <a class="returnButton btn" href="/student/panel/payment">
+    <a class="returnButton btn" href="/student/payment">
         &#9668; Назад
     </a>
     <div class="dateBlock">
         <a class="dateBlock_all" id="dateAll" href="#">За всё время</a>
         <div class="dateBlock_period">
             За период:<br/>
-            <input type="date" class="dateBlock_input" id="dateStart"/>
+            <input type="date" placeholder="дд.мм.гггг" class="dateBlock_input" id="dateStart"/>
             -
-            <input type="date" class="dateBlock_input" id="dateEnd"/>
+            <input type="date" placeholder="дд.мм.гггг" class="dateBlock_input" id="dateEnd"/>
             <input type="submit" value="Готово" class="dateBlock_submit" id="dateSubmit"/>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 {{/if}}
                         <td>{{this.date}}</td>
                         <td>{{this.operation}}</td>
-                        <td>{{this.sum}}</td>
+                        <td>{{this.sum}} руб.</td>
                     </tr>
             {{/each}}
             </tbody>

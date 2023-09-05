@@ -8,9 +8,9 @@ class StudentPanelController {
 
     async show_panel(req, res){
         try {
-            const token = req.headers.cookie.split('=')[1];
-            const {id} = jwt.verify(token, JWTKEY);
-            const student_id = id;
+            // const token = req.headers.cookie.split('=')[1];
+            // const {id} = jwt.verify(token, JWTKEY);
+            const student_id = 15;
             let weekday = req.params.wd;
             const sql_student = `SELECT * FROM student WHERE id=?`;
             db.query(sql_student, student_id, function(err, students) {
@@ -53,7 +53,9 @@ class StudentPanelController {
                             student_inf: students[0],
                             lessons: lessons,
                             linkPrevWeek: '/student/panel/' + prevWeek,
+                            isPrevWeekExist: 1,
                             linkNextWeek: '/student/panel/' + nextWeek,
+                            isNextWeekExist: 1,
                         });
                     })
                 }
@@ -61,15 +63,16 @@ class StudentPanelController {
         }
         catch (e)
         {
+            console.log(e);
             return res.redirect('/error/Ошибка загрузки!');
         }
     }
 
     async show_payment(req, res){
         try {
-            const token = req.headers.cookie.split('=')[1];
-            const {id} = jwt.verify(token, JWTKEY);
-            const student_id = id;
+            // const token = req.headers.cookie.split('=')[1];
+            // const {id} = jwt.verify(token, JWTKEY);
+            const student_id = 15;
             const sql_student = `SELECT * FROM student WHERE id=?`;
             db.query(sql_student, student_id, function(err, students) {
                 if(err) {
@@ -109,15 +112,16 @@ class StudentPanelController {
         }
         catch (e)
         {
+            console.log(e);
             return res.redirect('/error/Ошибка загрузки!');
         }
     }
 
     async show_history(req, res){
         try {
-            const token = req.headers.cookie.split('=')[1];
-            const {id} = jwt.verify(token, JWTKEY);
-            const student_id = id;
+            // const token = req.headers.cookie.split('=')[1];
+            // const {id} = jwt.verify(token, JWTKEY);
+            const student_id = 15;
             const sql_student = `SELECT * FROM student WHERE id=?`;
             db.query(sql_student, student_id, function(err, students) {
                 if(err) {

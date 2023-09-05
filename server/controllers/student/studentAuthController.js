@@ -19,6 +19,7 @@ class StudentAuthController {
         }
         catch (e)
         {
+            console.log(e);
             return res.redirect('/error/Ошибка загрузки!');
         }
     }

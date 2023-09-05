@@ -1,0 +1,110 @@
+Установка sudo
+apt install sudo
+
+
+FTP сервер
+Шаг 1. Обновляем систему:
+sudo apt update
+sudo apt upgrade
+sudo apt install gnupg2
+Шаг 2. Установка FTP-сервера в Debian 11:
+sudo apt install vsftpd
+sudo systemctl start vsftpd
+sudo systemctl enable vsftpd
+sudo systemctl status vsftpd
+Шаг 3. Создайте пользователя FTP.
+sudo adduser ftpuser
+echo "ftpuser" | sudo tee -a  /etc/vsftpd.userlist
+sudo mkdir -p ../var/www/
+sudo chown ftpuser:ftpuser ../var/www/
+cd ../var/
+chmod -R 777 www
+Шаг 4. Настройте FTP-сервер.
+nano /etc/vsftpd.conf
+listen=NO
+listen_ipv6=YES
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+use_localtime=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+chroot_local_user=YES
+secure_chroot_dir=/var/run/vsftpd/empty
+pam_service_name=vsftpd
+user_sub_token=$USER
+local_root=/var/www/
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+sudo systemctl restart vsftpd
+Шаг 5. Защитите Vsftpd с помощью SSL.
+sudo mkdir /etc/cert
+nano /etc/vsftpd.conf
+rsa_cert_file=/etc/cert/vsftpd.pem
+rsa_private_key_file=/etc/cert/vsftpd.pem
+ssl_enable=YES
+allow_anon_ssl=NO
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=NO
+require_ssl_reuse=NO
+ssl_ciphers=HIGH
+sudo systemctl restart vsftpd
+Шаг 6. Настройте брандмауэр.
+sudo apt install ufw
+
+
+установить MariaDB
+sudo apt install software-properties-common dirmngr
+Шаг 2. Установка MariaDB в Debian 11.
+wget https://mariadb.org/mariadb_release_signing_key.asc
+sudo chmod -c 644 mariadb_release_signing_key.asc
+sudo mv -vi mariadb_release_signing_key.asc /etc/apt/trusted.gpg.d/
+echo "deb [arch=amd64,arm64,ppc64el] \
+https://ftp.ubuntu-tw.org/mirror/mariadb/repo/10.6/debian \
+bullseye main" | sudo tee /etc/apt/sources.list.d/mariadb.list
+sudo apt update
+sudo apt install mariadb-server
+Добавить пользователя
+CREATE USER 'repcentr1_ru'@'localhost' IDENTIFIED BY 'RC_23_jsNWr52oq';
+CREATE DATABASE repcentr1_ru;
+GRANT ALL PRIVILEGES ON repcentr1_ru . * TO 'repcentr1_ru'@'localhost';
+
+
+Импорт базы данных MySQL
+use repcentr1_ru
+source /var/www/repcentr1_ru.sql
+
+Установка node js, npm, nvm
+sudo apt install nodejs npm
+sudo apt install curl -y
+curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh -o install_nvm.sh
+bash install_nvm.sh
+source ~/.profile
+nvm install v16.15.1
+nvm use 16.15.1
+
+
+Установка проекта
+cd /var/www/
+npm install
+
+
+npx kill-port [PORT]
+lsof -ti tcp:[PORT]
+sudo kill -9 [PID]
+
+npm install nodemon -g
+
+Установите screen, если он еще не установлен: sudo apt-get install screen.
+Запустите новую сессию screen: screen -S session_name, где session_name - это имя вашей новой сессии.
+Запустите свой сервер внутри сессии screen.
+Отключитесь от сессии screen, нажав Ctrl+A и затем D. Сервер продолжит работать в фоновом режиме.
+Чтобы вернуться к сессии screen, используйте команду screen -r session_name.
+
+
