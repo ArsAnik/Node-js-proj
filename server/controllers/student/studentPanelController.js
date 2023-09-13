@@ -48,7 +48,7 @@ class StudentPanelController {
                         );
                         let prevWeek = parseInt(weekday) - 1;
                         let nextWeek = parseInt(weekday) + 1;
-                        return res.render("lk_student", {
+                        return res.render("student/lk", {
                             title: "Личный кабинет ученика",
                             student_inf: students[0],
                             lessons: lessons,
@@ -101,7 +101,7 @@ class StudentPanelController {
                                 element.payLink = 'https://www.google.ru/';
                             }
                         );
-                        return res.render("lk_student_payment", {
+                        return res.render("student/payment", {
                             title: "Пополнение баланса",
                             student_inf: students[0],
                             payments: payments,
@@ -165,7 +165,7 @@ class StudentPanelController {
                                     element.date = calc_days.get_day_with_year(element.date);
                                 }
                             );
-                            return res.render("lk_student_history", {
+                            return res.render("student/history", {
                                 title: "История оплат",
                                 payments: all_pay_inf,
                             });

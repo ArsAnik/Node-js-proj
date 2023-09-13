@@ -1,0 +1,62 @@
+<div class="mainBlock">
+    <a class="returnButton btn" href="/admin/panel">
+        &#9668; Назад
+    </a>
+    {{#if student}}
+        <div class="studentInf">
+            <span class="studentInf_item studentInf_name">{{student.name}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Email:</b> {{student.email}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Телефон:</b> {{student.email}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Класс:</b> {{student.number}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Мессенджер:</b> {{student.messenger_title}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Цель занятий:</b> {{student.sense}}</span>
+            <div class="studentInf_balance">
+                <span class="studentInf_balance_text">Баланс ученика:</span>
+                <span class="studentInf_balance_sum">{{student.balance}}</span>
+            </div>
+        </div>
+    {{/if}}
+    {{#if payments}}
+    <div class="studentPayHistory">
+        <span>История оплат ученика:</span>
+        <div class="tableBlock tableBlock__history">
+            <div class="tableLegend">
+                <div class="tableLegend_inf">
+                    <div class="tableLegend_colorBLock tableLegend_colorBLock__debt"></div>
+                    <span class="tableLegend_text">- неоплаченный урок</span>
+                </div>
+                <label class="checkboxLabel">
+                    <input type="checkbox" id="debt_checkbox">
+                    Только неоплаченные
+                </label>
+            </div>
+            <table class="tableBlock_table">
+                <thead class="tableBlock_head">
+                <tr>
+                    <th>Дата</th>
+                    <th>Предмет</th>
+                    <th>Репетитор</th>
+                    <th>Продолжительность</th>
+                    <th>Стоимость</th>
+                    <th>Ссылка на оплату</th>
+                </tr>
+                </thead>
+                <tbody class="tableBlock_body">
+                {{#each payments}}
+                    <tr class="tableBlock_item">
+                        <td>{{this.day}}</td>
+                        <td>{{this.title}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.duration}} мин.</td>
+                        <td>{{this.price}} руб.</td>
+                        <td class="tableBlock_link">
+                            <a href="{{this.payLink}}" class="linkBlock">{{this.payLink}}</a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{/if}}
+</div>

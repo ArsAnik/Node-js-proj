@@ -6,7 +6,8 @@ const connection = mysql.createConnection({
     port: config.DBPORT,
     user: config.DBUSER,
     password: config.DBPASSWORD,
-    database: config.DBNAME
+    database: config.DBNAME,
+    multipleStatements: true
 })
 
 connection.connect((error) => {

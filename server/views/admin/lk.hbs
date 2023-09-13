@@ -1,0 +1,58 @@
+<div class="mainBlock">
+      <a href="/admin/logout" class="linkBlock linkBlock__long linkBlock__out">
+        Выйти
+      </a>
+    <a href="/admin/lessonActions" class="linkBlock linkBlock__long linkBlock__accept">
+        Действия по урокам
+    </a>
+    {{#if students}}
+  <div class="tableBlock tableBlock__admin">
+      <div class="tableLegend">
+          <div class="tableLegend_inf">
+              <div class="tableLegend_colorBLock tableLegend_colorBLock__debt"></div>
+              <span class="tableLegend_text">- есть задолженность</span>
+          </div>
+          <label class="checkboxLabel">
+              <input type="checkbox" id="debt_checkbox">
+              Только задолженности
+          </label>
+      </div>
+    <table class="tableBlock_table">
+      <thead class="tableBlock_head">
+      <tr>
+        <th>Ученик</th>
+        <th>E-mail</th>
+        <th>Телефон</th>
+          <th>Баланс</th>
+          <th>Добавить урок</th>
+        <th>Подробнее</th>
+      </tr>
+      </thead>
+      <tbody class="tableBlock_body">
+      {{#each students}}
+          {{#if this.is_debt}}
+            <tr class="tableBlock_item tableBlock_item__red">
+          {{else}}
+            <tr class="tableBlock_item tableBlock_item__fine">
+          {{/if}}
+        <td>{{this.name}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.phone}}</td>
+          <td>{{this.balance}} руб.</td>
+          <td class="tableBlock_link">
+              <a href="/admin/addLesson/{{this.id}}" class="linkBlock">Добавить</a>
+          </td>
+          <td class="tableBlock_link">
+              <a href="/admin/studentPage/{{this.id}}" class="linkBlock">Перейти</a>
+          </td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+    {{/if}}
+    <a href="/admin/addStudent" class="linkBlock linkBlock__long linkBlock__add">
+        Добавить ученика +
+    </a>
+</div>
+<script src="/js/debtCheckbox.js"></script>

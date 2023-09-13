@@ -13,7 +13,7 @@ class StudentAuthController {
 
     async show_login(req, res){
         try {
-            res.render("student_enter", {
+            res.render("student/enter", {
                 title: 'Вход в личный кабинет ученика'
             });
         }

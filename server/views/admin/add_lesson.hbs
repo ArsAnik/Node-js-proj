@@ -1,0 +1,54 @@
+<a class="returnButton btn" href="/admin/panel">
+    &#9668; Назад
+</a>
+<div class="formBlock formBlock__big">
+    <h4 class="form_head">Добавление урока ученика {{student.name}}</h4>
+    <form action="/admin/addStudent" method="POST">
+        <div class="form_inputBlock">
+            <input type="text" class="form_input" id="stud_secName" placeholder=" " name="second_name" required>
+            <label for="stud_secName" class="form_label"></label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="text" class="form_input" id="stud_firstName" placeholder=" " name="first_name" required>
+            <label for="stud_firstName" class="form_label">Имя ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="text" class="form_input" id="stud_fatherName" placeholder=" " name="father_name">
+            <label for="stud_fathName" class="form_label">Отчество ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <label for="course" class="select_label">Выберите класс:</label>
+            <select id="course" class="form_select" name="course" required>
+                {{#each course}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form_inputBlock">
+            <label for="messenger" class="select_label">Месенджер:</label>
+            <select id="messenger" class="form_select" name="messenger" required>
+                {{#each messenger}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form_inputBlock">
+            <input type="email" class="form_input" id="stud_email" placeholder=" " name="email" required>
+            <label for="stud_email" class="form_label">Email ученика</label>
+        </div>
+        <div class="form_inputBlock">
+            <input type="tel" class="form_input phoneMask" id="stud_personal_phone" name="personal_phone" placeholder=" " required>
+            <label for="stud_personal_phone" class="form_label">Контактный телефон</label>
+        </div>
+        <div class="form_inputBlock">
+            <label for="aim" class="select_label select_label__big">Цель занятий:</label>
+            <select id="aim" class="form_select form_select__big" name="aim" required>
+                {{#each aim}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn__submit">Добавить</button>
+    </form>
+</div>

@@ -12,7 +12,7 @@ class AdminAuthController {
 
     async show_login(req, res){
         try {
-            return res.render("admin_enter", {
+            return res.render("admin/enter", {
                 title: 'Вход в панель администратора'
             });
         }
@@ -25,27 +25,27 @@ class AdminAuthController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.json({ is_stand: true, error: 'Ошибка входа! ' + errors.array()[0].msg });
+                return res.json({ is_error: true, error: 'Ошибка входа! ' + errors.array()[0].msg });
             }
             const {login, password} = req.body;
             const sql_login = `SELECT * FROM master WHERE login=?`;
             db.query(sql_login, login, function (err, results) {
                 if (err) {
                     console.log(err);
-                    return res.json({ is_stand: true, error: 'Ошибка базы данных!' });
+                    return res.json({ is_error: true, error: 'Ошибка базы данных!' });
                 } else if (results.length === 0) {
-                    return res.json({ is_stand: true, error: `Логин ${login} не существует!` });
+                    return res.json({ is_error: true, error: `Логин ${login} не существует!` });
                 }
                 const isValidPassword = bcrypt.compareSync(password, results[0].password);
                 if (!isValidPassword) {
-                    return res.json({ is_stand: true, error: `Пароль неверен!` });
+                    return res.json({ is_error: true, error: `Пароль неверен!` });
                 }
                 const token = generateAccessToken(results[0].id, "admin");
                 res.cookie('token', token);
-                return res.json({ is_stand: false, redirect: '/admin/panel/' + results[0].id });
+                return res.json({ is_error: false, redirect: '/admin/panel' });
             })
         } catch (e) {
-            return res.status(400).json({ is_stand: false, redirect: '/error/Ошибка загрузки!' });
+            return res.status(400).json({ is_error: true, redirect: '/error/Ошибка загрузки!' });
         }
     }
 

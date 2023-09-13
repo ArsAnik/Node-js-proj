@@ -3,6 +3,7 @@
 
 *{
     font-family: 'Raleway', sans-serif;
+    font-variant-numeric: lining-nums;
 }
 
 .block__abs{
@@ -12,17 +13,14 @@
     transform: translate(-50%, -50%);
 }
 
-.formEnter{
+.formBlock{
     width: 320px;
-    height: 320px;
+    height: auto;
     padding: 10px;
     color: #2F2F2F;
     background: #F3F3F3;
     border-radius: 20px;
-}
-
-.formEnter__big{
-    height: 560px;
+    margin: 20px auto;
 }
 
 .form_head{
@@ -37,7 +35,7 @@
     margin-bottom: 20px;
 }
 
-.form_input {
+.form_input{
     display: block;
     padding: 20px 10px 10px;
     width: 100%;
@@ -96,6 +94,12 @@
 
 .form_select:focus {
     border-color: #BBD6FE;
+}
+
+.form_select__big{
+    position: relative;
+    width: 100%;
+    margin: 10px 0 0;
 }
 
 .btn{
@@ -230,7 +234,7 @@
     text-align: center;
 }
 
-.personBlock{
+.personBlock {
     position: absolute;
     top: 47px;
     right: 20px;
@@ -238,7 +242,7 @@
     justify-content: space-evenly;
     align-items: center;
     font-size: 20px;
-    width: 200px;
+    width: 320px;
     height: 50px;
     border-radius: 10px;
     background: #BBD6FE;
@@ -246,11 +250,14 @@
     cursor: pointer;
 }
 
+.personBlock:hover{
+    opacity: .8;
+}
+
 .personBlock_name{
     width: 70%;
     text-align: center;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    font-size: 16px;
 }
 
 .personBlock_img{
@@ -300,6 +307,7 @@
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
+    border-radius: 10px;
     cursor: pointer;
     color: #FFF;
 }
@@ -318,7 +326,37 @@
     opacity: .2;
 }
 
-.linkBlock_pay{
+.linkBlock__out, .linkBlock__long{
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.linkBlock__long{
+    width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.linkBlock__out{
+    width: 92px;
+    margin-left: auto;
+    margin-right: 40px;
+    background: #FF5858;
+}
+
+.linkBlock__add{
+    background: #BBD6FE;
+}
+
+.linkBlock__debt{
+    background: #ffc865;
+}
+
+.linkBlock__accept{
+    background: #50cb6c;
+}
+
+.linkBlock__pay{
     position: absolute;
     top: 50%;
     right: 10px;
@@ -326,15 +364,23 @@
     width: 115px;
     height: 34px;
     background: #82D84D;
-    border-radius: 10px;
     font-size: 12px;
     color: #FFF;
+    text-align: center;
+}
+
+.checkboxLabel{
+    display: block;
     text-align: center;
 }
 
 .tableBlock{
     margin: 80px auto 20px;
     width: 1400px;
+}
+
+.tableBlock__admin{
+    margin-top: 20px;
 }
 
 .tableBlock__payment{
@@ -386,7 +432,7 @@
     background: #d4fdb6;
 }
 
-.tableBlock_item__red, .tableLegend_colorBLock__canceled{
+.tableBlock_item__red, .tableLegend_colorBLock__canceled, .tableLegend_colorBLock__debt{
     background: #ffc8c8;
 }
 
@@ -423,31 +469,6 @@
     border-radius: 10px;
 }
 
-.logOutBtn{
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 94px;
-    height: 34px;
-    color: #fff;
-    border-radius: 10px;
-    background: #FF5858;
-}
-
-.addStudentBtn{
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 320px;
-    height: 74px;
-    background: #BBD6FE;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 .errorBlock{
     position: absolute;
     top: 50%;
@@ -475,20 +496,27 @@
     border-radius: 10px;
 }
 
-#errorPopUp{
-    position: absolute;
+#errorPopUp, #successPopUp{
+    position: fixed;
     left: 50%;
     transform: translate(-50%, 60px);
     width: 320px;
     padding: 10px 20px;
     text-align: center;
-    background: #FF5858;
     border-radius: 10px;
     color: #fff;
     font-size: 18px;
     z-index: -1;
     opacity: 0;
     cursor: default;
+}
+
+#errorPopUp{
+    background: #FF5858;
+}
+
+#successPopUp{
+    background: #58ff87;
 }
 
 .active{
@@ -533,20 +561,9 @@
     }
 }
 
-@media (max-width: 550px) {
-    input[type="date"]:before {
-        content: attr(placeholder) !important;
-    }
-
-    input[type="date"]:focus:before {
-        content: '' !important;
-    }
-
-    input[type="date"] {
-        display: flex;
-    }
-    .historyButton{
-        margin-top: 20px;
+@media (max-width: 650px) {
+    .tableBlock.tableBlock__lessons{
+        margin-top: 150px;
     }
     .personBlock{
         left: 50%;
@@ -558,19 +575,35 @@
         left: 0;
         margin: 0 auto;
     }
+}
+
+@media (max-width: 550px) {
+
+    input[type="date"]:before {
+        content: attr(placeholder) !important;
+    }
+
+    input[type="date"]:focus:before {
+        content: '' !important;
+    }
+
+    input[type="date"] {
+        display: flex;
+    }
+    .historyButton {
+        margin-top: 20px;
+    }
+    .linkBlock__out{
+        margin-right: auto;
+    }
+
     .labelBlock{
         width: 240px;
         font-size: 18px;
     }
     .tableBlock{
-        margin: 150px auto 0;
+        margin: 20px auto 0;
         width: 320px;
-    }
-    .tableBlock__payment{
-        margin-top: 20px;
-    }
-    .tableBlock__history{
-        margin-top: 20px;
     }
     .navigationBlock{
         width: 320px;
