@@ -524,6 +524,57 @@
     animation-name: slideIn;
 }
 
+.studentInf{
+    width: 320px;
+    margin: 0 auto;
+}
+
+.studentInf_item{
+    display: block;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.studentInf_name{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.studentInf_balance{
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.studentInf_balance_text{
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+.studentInf_balance_sum{
+    display: block;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.studentPayHistory_title{
+    display: block;
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.infBlock{
+    font-size: 18px;
+    padding: 20px;
+    width: auto;
+    text-align: center;
+}
+
 @keyframes slideIn {
     100% {
         z-index: 100;

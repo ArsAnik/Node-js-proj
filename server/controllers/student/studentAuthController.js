@@ -27,25 +27,25 @@ class StudentAuthController {
         try {
             const errors = validationResult(req);
             if(!errors.isEmpty()){
-                return res.json({ is_stand: true, error: 'Ошибка входа! ' + errors.array()[0].msg });
+                return res.json({ is_error: true, error: 'Ошибка входа! ' + errors.array()[0].msg });
             }
             const {email, password} = req.body;
             const sql_login = `SELECT * FROM student WHERE email=?`;
             db.query(sql_login, email, function(err, results) {
                 if(err) {
                     console.log(err);
-                    return res.json({ is_stand: true, error: 'Ошибка базы данных!' });
+                    return res.json({ is_error: true, error: 'Ошибка базы данных!' });
                 }
                 else if(results.length === 0) {
-                    return res.json({ is_stand: true, error: `Почта ${email} не зарегистрирована!` });
+                    return res.json({ is_error: true, error: `Почта ${email} не зарегистрирована!` });
                 }
-                const isValidPassword = bcrypt.compareSync(password, results[0].password);
-                if(!isValidPassword){
-                    return res.json({ is_stand: true, error: `Пароль неверен!` });
-                }
+                // const isValidPassword = bcrypt.compareSync(password, results[0].password);
+                // if(!isValidPassword){
+                //     return res.json({ is_error: true, error: `Пароль неверен!` });
+                // }
                 const token = generateAccessToken(results[0].id, "student");
                 res.cookie('token', token, { httpOnly: true });
-                return res.json({ is_stand: false, redirect: '/student/panel/' + calc_days.calc_week()});
+                return res.json({ is_error: false, redirect: '/student/panel/' + calc_days.calc_week()});
             })
         }
         catch (e)

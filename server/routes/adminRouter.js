@@ -3,6 +3,7 @@ const router = new Router()
 const AuthController = require('../controllers/admin/adminAuthController')
 const PanelController = require('../controllers/admin/adminPanelController')
 const StudentPageController = require('../controllers/admin/adminStudentPageController')
+const LessonController = require('../controllers/admin/adminLessonController')
 const {check} = require('express-validator')
 const roleMiddleware = require('../middlewaree/roleMiddleware')
 const authAdminMiddleware = require('../middlewaree/authAdminMiddleware')
@@ -24,11 +25,18 @@ router.get('/studentPage/:id',
     [
         roleMiddleware(['admin'])
     ],
-    StudentPageController.show_panel)
+    StudentPageController.show_page)
 
-router.get('/addStudent',
+router.get('/addLesson/:id',
+    [
+        roleMiddleware(['admin'])
+    ],
+    LessonController.show_add_lesson_form)
+
+router.get('/addStudent',[
     roleMiddleware(['admin']),
-    PanelController.show_addForm)
+],
+    PanelController.show_add_student_form)
 
 router.get('/logout',
     roleMiddleware(['admin']),

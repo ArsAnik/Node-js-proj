@@ -20,7 +20,7 @@
             <label for="course" class="select_label">Выберите класс:</label>
             <select id="course" class="form_select" name="course" required>
                 {{#each course}}
-                    <option value="{{this.id}}">{{this.name}}</option>
+                    <option value="{{this.id}}">{{this.course_number}}</option>
                 {{/each}}
             </select>
         </div>
@@ -28,7 +28,7 @@
             <label for="messenger" class="select_label">Месенджер:</label>
             <select id="messenger" class="form_select" name="messenger" required>
                 {{#each messenger}}
-                    <option value="{{this.id}}">{{this.name}}</option>
+                    <option value="{{this.id}}">{{this.messenger_title}}</option>
                 {{/each}}
             </select>
         </div>
@@ -44,7 +44,7 @@
             <label for="aim" class="select_label select_label__big">Цель занятий:</label>
             <select id="aim" class="form_select form_select__big" name="aim" required>
                 {{#each aim}}
-                    <option value="{{this.id}}">{{this.name}}</option>
+                    <option value="{{this.id}}">{{this.aim_text}}</option>
                 {{/each}}
             </select>
         </div>

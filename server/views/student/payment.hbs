@@ -16,6 +16,7 @@
     <span class="labelBlock">
         Уроки, которые необходимо оплатить:
     </span>
+    {{#if payments}}
     <div class="tableBlock tableBlock__payment">
         <table class="tableBlock_table">
             <thead class="tableBlock_head">
@@ -42,6 +43,9 @@
             </tbody>
         </table>
     </div>
+    {{else}}
+        <div class="infBlock">Все уроки оплачены ✅</div>
+        {{/if}}
     <a class="historyButton btn" href="/student/history">
         История оплат
     </a>

@@ -32,7 +32,7 @@ class AdminPanelController {
         }
     }
 
-    async show_addForm(req, res){
+    async show_add_student_form(req, res){
         try {
             const sql_queries = `SELECT * FROM course; SELECT * FROM messenger; SELECT * FROM aim`;
             db.query(sql_queries, function(err, results) {

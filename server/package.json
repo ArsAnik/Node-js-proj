@@ -6,6 +6,10 @@
   "scripts": {
     "start": "nodemon index.js"
   },
+  "engines" : {
+    "node" : ">=16.16.0",
+    "nvm": ">=1.1.10"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

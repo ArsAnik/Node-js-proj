@@ -2,6 +2,7 @@
     <a class="returnButton btn" href="/student/payment">
         &#9668; Назад
     </a>
+    {{#if payments}}
     <div class="dateBlock">
         <a class="dateBlock_all" id="dateAll" href="#">За всё время</a>
         <div class="dateBlock_period">
@@ -36,5 +37,8 @@
             </tbody>
         </table>
     </div>
+    {{else}}
+        <div class="infBlock">Здесь пока ничего нет</div>
+    {{/if}}
 </div>
 <script src="/js/datepicker.js"></script>

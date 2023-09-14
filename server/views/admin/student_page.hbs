@@ -6,19 +6,23 @@
         <div class="studentInf">
             <span class="studentInf_item studentInf_name">{{student.name}}</span>
             <span class="studentInf_item"><b class="studentInf_item__bold">Email:</b> {{student.email}}</span>
-            <span class="studentInf_item"><b class="studentInf_item__bold">Телефон:</b> {{student.email}}</span>
-            <span class="studentInf_item"><b class="studentInf_item__bold">Класс:</b> {{student.number}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Телефон:</b> {{student.phone}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Класс:</b> {{student.course_number}}</span>
             <span class="studentInf_item"><b class="studentInf_item__bold">Мессенджер:</b> {{student.messenger_title}}</span>
-            <span class="studentInf_item"><b class="studentInf_item__bold">Цель занятий:</b> {{student.sense}}</span>
-            <div class="studentInf_balance">
+            <span class="studentInf_item"><b class="studentInf_item__bold">Цель занятий:</b> {{student.aim_text}}</span>
+            {{#if is_neg_balance}}
+            <div class="studentInf_balance balance__negative">
+            {{else}}
+            <div class="studentInf_balance balance__positive">
+            {{/if}}
                 <span class="studentInf_balance_text">Баланс ученика:</span>
-                <span class="studentInf_balance_sum">{{student.balance}}</span>
+                <span class="studentInf_balance_sum">{{student.balance}} руб.</span>
             </div>
         </div>
     {{/if}}
     {{#if payments}}
     <div class="studentPayHistory">
-        <span>История оплат ученика:</span>
+        <span class="studentPayHistory_title">История оплат уроков ученика:</span>
         <div class="tableBlock tableBlock__history">
             <div class="tableLegend">
                 <div class="tableLegend_inf">
@@ -35,6 +39,7 @@
                 <tr>
                     <th>Дата</th>
                     <th>Предмет</th>
+                    <th>Особенности</th>
                     <th>Репетитор</th>
                     <th>Продолжительность</th>
                     <th>Стоимость</th>
@@ -43,9 +48,14 @@
                 </thead>
                 <tbody class="tableBlock_body">
                 {{#each payments}}
-                    <tr class="tableBlock_item">
+                    {{#if this.is_paid}}
+                        <tr class="tableBlock_item tableBlock_item__fine">
+                    {{else}}
+                        <tr class="tableBlock_item tableBlock_item__red">
+                    {{/if}}
                         <td>{{this.day}}</td>
                         <td>{{this.title}}</td>
+                        <td>{{this.feature}}</td>
                         <td>{{this.name}}</td>
                         <td>{{this.duration}} мин.</td>
                         <td>{{this.price}} руб.</td>
@@ -60,3 +70,4 @@
     </div>
     {{/if}}
 </div>
+    <script src="/js/debtCheckbox.js"></script>

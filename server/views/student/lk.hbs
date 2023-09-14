@@ -3,7 +3,11 @@
         <span class="personBlock_name">{{student_inf.name}}</span>
         <img src="/images/person.png" class="personBlock_img">
     </div>
+    {{#if is_neg_balance}}
     <div class="balance balance__negative">
+    {{else}}
+    <div class="balance balance__positive">
+    {{/if}}
         <span class="balance_text">Ваш баланс:</span>
         <span class="balance_sum">{{student_inf.balance}} руб.</span>
         <a href="/student/payment" class="linkBlock linkBlock__pay">
@@ -55,6 +59,9 @@
             {{/each}}
             </tbody>
         </table>
+        {{#unless lessons}}
+            <div class="infBlock">Уроков нет</div>
+        {{/unless}}
     </div>
     <div class="navigationBlock">
         <a href="{{linkPrevWeek}}" class="linkBlock navigationBlock_left">&#9668; Предыдущая неделя</a>
