@@ -12,7 +12,7 @@ module.exports = function (req, res, next){
             next();
         }
         else{
-            return res.redirect('/student/panel/' + calc_days.calc_week());
+            return res.redirect('/student/panel/currentWeek');
         }
     }catch (e) {
         console.log(e);

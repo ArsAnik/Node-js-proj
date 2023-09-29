@@ -45,7 +45,7 @@ class StudentAuthController {
                 // }
                 const token = generateAccessToken(results[0].id, "student");
                 res.cookie('token', token, { httpOnly: true });
-                return res.json({ is_error: false, redirect: '/student/panel/' + calc_days.calc_week()});
+                return res.json({ is_error: false, redirect: '/student/panel/currentWeek'});
             })
         }
         catch (e)

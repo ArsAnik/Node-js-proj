@@ -94,7 +94,7 @@ nvm use 16.15.1
 cd /var/www/
 npm install
 
-
+ps -la
 npx kill-port [PORT]
 lsof -ti tcp:[PORT]
 sudo kill -9 [PID]
@@ -102,7 +102,7 @@ sudo kill -9 [PID]
 npm install nodemon -g
 
 Установите screen, если он еще не установлен: sudo apt-get install screen.
-Запустите новую сессию screen: screen -S session_name, где session_name - это имя вашей новой сессии.
+Запустите новую сессию screen: screen -S session_name, где session_name - это имя вашей новой сессии. (tutor_site)
 Запустите свой сервер внутри сессии screen.
 Отключитесь от сессии screen, нажав Ctrl+A и затем D. Сервер продолжит работать в фоновом режиме.
 Чтобы вернуться к сессии screen, используйте команду screen -r session_name.

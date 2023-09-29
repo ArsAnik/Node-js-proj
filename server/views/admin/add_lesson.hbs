@@ -2,11 +2,11 @@
     &#9668; Назад
 </a>
 <div class="formBlock formBlock__big">
-    <h4 class="form_head">Добавление урока ученика {{student.name}}</h4>
+    <h4 class="form_head">Добавление урока: {{title}}</h4>
     <form action="/admin/addStudent" method="POST">
         <div class="form_inputBlock">
-            <input type="text" class="form_input" id="stud_secName" placeholder=" " name="second_name" required>
-            <label for="stud_secName" class="form_label"></label>
+            <input type="text" class="form_input" id="lesson_link" placeholder=" " name="lesson_link" required>
+            <label for="lesson_link" class="form_label">Ссылка на урок</label>
         </div>
         <div class="form_inputBlock">
             <input type="text" class="form_input" id="stud_firstName" placeholder=" " name="first_name" required>

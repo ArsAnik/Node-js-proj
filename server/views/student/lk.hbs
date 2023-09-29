@@ -14,7 +14,42 @@
             Пополнение баланса
         </a>
     </div>
-    <div class="tableBlock tableBlock__lessons">
+    <div class="tableBlock tableBlock__schedule">
+        <h4 class="tableBlock_header">Постоянное расписание<br/>(разовые занятия не отображаются):</h4>
+        <table class="tableBlock_table">
+            <thead class="tableBlock_head tableBlock_head__orange">
+            <tr>
+                <th>Понедельник</th>
+                <th>Вторник</th>
+                <th>Среда</th>
+                <th>Четверг</th>
+                <th>Пятиница</th>
+                <th>Суббота</th>
+                <th>Воскресенье</th>
+            </tr>
+            </thead>
+            <tbody class="tableBlock_body">
+            <tr>
+                {{#each const_lessons}}
+                <td>
+                    {{#each this}}
+                        <div class="scheduleItem">
+                            <span class="scheduleItem_time">{{this.time}}</span>
+                            <span class="scheduleItem_name">{{this.title}}</span>
+                            <span class="scheduleItem_tutor">{{this.name}}</span>
+                        </div>
+                    {{/each}}
+                </td>
+                {{/each}}
+            </tr>
+            </tbody>
+        </table>
+        {{#unless const_lessons}}
+            <div class="infBlock">Уроков нет</div>
+        {{/unless}}
+    </div>
+    <div class="tableBlock tableBlock__lessons" id="lessons">
+        <h4 class="tableBlock_header">Расписание на эту неделю:</h4>
         <div class="tableLegend">
             <div class="tableLegend_inf">
                 <div class="tableLegend_colorBLock tableLegend_colorBLock__done"></div>
@@ -26,6 +61,9 @@
             </div>
         </div>
         <table class="tableBlock_table">
+            <caption class="tableBlock_caption">
+                {{week_range}}
+            </caption>
             <thead class="tableBlock_head">
             <tr>
                 <th>Дата</th>
@@ -64,7 +102,15 @@
         {{/unless}}
     </div>
     <div class="navigationBlock">
-        <a href="{{linkPrevWeek}}" class="linkBlock navigationBlock_left">&#9668; Предыдущая неделя</a>
-        <a href="{{linkNextWeek}}" class="linkBlock navigationBlock_right">Будущая неделя &#9658;</a>
+        {{#unless linkPrevWeek}}
+            <a href="#" class="disabled linkBlock navigationBlock_left">&#9668; Предыдущая неделя</a>
+        {{else}}
+            <a href="{{linkPrevWeek}}" class="linkBlock navigationBlock_left">&#9668; Предыдущая неделя</a>
+        {{/unless}}
+        {{#unless linkNextWeek}}
+            <a href="#" class="disabled linkBlock navigationBlock_right">Будущая неделя &#9658;</a>
+        {{else}}
+            <a href="{{linkNextWeek}}" class="linkBlock navigationBlock_right">Будущая неделя &#9658;</a>
+        {{/unless}}
     </div>
 </div>

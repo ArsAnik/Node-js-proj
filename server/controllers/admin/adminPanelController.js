@@ -11,7 +11,7 @@ class AdminPanelController {
         try {
             // const {id} = jwt.verify(token, JWTKEY);
             const id = 1;
-            const sql = `SELECT * FROM student WHERE FK_master=?`;
+            const sql = `SELECT * FROM student WHERE FK_master_student=?`;
             db.query(sql, id, function(err, results) {
                 if(err) {
                     console.log(err);

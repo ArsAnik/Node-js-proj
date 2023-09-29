@@ -3,6 +3,7 @@ const calc_days = require('../../utils/dateCalculation')
 const check_func = require('../../utils/checkFunctions')
 const jwt = require("jsonwebtoken");
 const {JWTKEY} = require("../../config");
+const {compileETag} = require("express/lib/utils");
 
 class StudentPanelController {
 
@@ -11,7 +12,7 @@ class StudentPanelController {
             // const token = req.headers.cookie.split('=')[1];
             // const {id} = jwt.verify(token, JWTKEY);
             const student_id = 20;
-            let weekday = req.params.wd;
+            let week = parseInt(req.params.wd);
             const sql_student = `SELECT * FROM student WHERE id=?`;
             db.query(sql_student, student_id, function(err, students) {
                 if(err) {
@@ -23,39 +24,67 @@ class StudentPanelController {
                 }
                 else
                 {
-                    if (!check_func.checkInt(weekday) || weekday < 0 || weekday > 20000) {
-                        return res.redirect('/student/panel/' + calc_days.calc_week());
+                    if (!check_func.checkInt(week) || week < 0 || week > 20000) {
+                        return res.redirect('/student/panel/' + calc_days.get_current_week());
                     }
-                    let weekRange = calc_days.calc_week_range_for_db(weekday);
+                    let weekRange = calc_days.get_week_range_for_db(week);
                     const sql_student_inf = `SELECT * FROM lesson l
                     LEFT JOIN subject s ON l.FK_subject = s.id 
                     LEFT JOIN tutor t ON l.FK_tutor = t.id
                     WHERE FK_student=? AND l.date >= "` + weekRange[0] + `" AND l.date <= "` + weekRange[1]
-                    +`" ORDER BY l.date`;
-                    db.query(sql_student_inf, student_id, function(err, lessons) {
+                    +`" ORDER BY l.date;
+                    SELECT * FROM const_lesson l
+                    LEFT JOIN subject s ON l.FK_subject = s.id 
+                    LEFT JOIN tutor t ON l.FK_tutor = t.id
+                    WHERE l.FK_student = ?
+                    ORDER BY l.weekday_num ASC;
+                    SELECT date FROM lesson
+                    WHERE FK_student=?
+                    ORDER BY date ASC
+                    LIMIT 1;
+                    SELECT date FROM lesson
+                    WHERE FK_student=?
+                    ORDER BY date DESC
+                    LIMIT 1`;
+                    db.query(sql_student_inf, [student_id, student_id, student_id, student_id], function(err, result) {
                         if (err) {
                             console.log(err);
                             return res.redirect('/error/Ошибка базы данных!');
                         }
-                        lessons.forEach(
+                        result[0].forEach(
                             function (element) {
-                                element.time = calc_days.get_time(element.date);
+                                element.time = calc_days.get_time_period(element.date, element.duration);
                                 element.weekday = calc_days.get_weekday(element.date);
                                 element.day = calc_days.get_day(element.date);
                                 element.feature = element.is_regular ? "нет" : "разовое";
                             }
                         );
-                        let prevWeek = parseInt(weekday) - 1;
-                        let nextWeek = parseInt(weekday) + 1;
+                        let schedule = Array(7).fill().map(() => Array());
+                        result[1].forEach(
+                            function (element){
+                                schedule[element.weekday_num].push(element);
+                            }
+                        );
+                        let prevWeekLink = '', nextWeekLink = '';
+                        if(result[2][0] !== undefined){
+                            if(!(calc_days.get_week_from_date(result[2][0].date) >= week)){
+                                prevWeekLink = '/student/panel/' + (week - 1) + '#lessons';
+                            }
+                        }
+                        if(result[3][0] !== undefined){
+                            if(!(calc_days.get_week_from_date(result[3][0].date) <= (week))){
+                                nextWeekLink = '/student/panel/' + (week + 1) + '#lessons';
+                            }
+                        }
                         return res.render("student/lk", {
                             title: "Личный кабинет ученика",
                             student_inf: students[0],
-                            lessons: lessons,
-                            linkPrevWeek: '/student/panel/' + prevWeek,
-                            isPrevWeekExist: 1,
-                            linkNextWeek: '/student/panel/' + nextWeek,
-                            isNextWeekExist: 1,
-                            is_neg_balance: students[0].balance < 0
+                            lessons: result[0],
+                            const_lessons: schedule,
+                            linkPrevWeek: prevWeekLink,
+                            linkNextWeek: nextWeekLink,
+                            is_neg_balance: students[0].balance < 0,
+                            week_range: calc_days.get_week_range_for_text(week)
                         });
                     })
                 }

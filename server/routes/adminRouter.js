@@ -27,11 +27,17 @@ router.get('/studentPage/:id',
     ],
     StudentPageController.show_page)
 
-router.get('/addLesson/:id',
+router.get('/addLesson',
     [
         roleMiddleware(['admin'])
     ],
-    LessonController.show_add_lesson_form)
+    LessonController.add_lesson)
+
+// router.get('/addLesson/:studentId',
+//     [
+//         roleMiddleware(['admin'])
+//     ],
+//     LessonController.show_add_lesson_form)
 
 router.get('/addStudent',[
     roleMiddleware(['admin']),
