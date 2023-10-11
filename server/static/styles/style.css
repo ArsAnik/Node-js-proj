@@ -23,6 +23,15 @@
     margin: 20px auto;
 }
 
+.form_information{
+    display: block;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
 .form_head{
     font-size: 24px;
     text-align: center;
@@ -103,7 +112,7 @@
 }
 
 .btn{
-    width: 100%;
+    margin: 0 auto;
     height: 50px;
     border-radius: 10px;
     font-size: 20px;
@@ -113,6 +122,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #BBD6FE;
+    color: #fff;
 }
 
 .btn:hover{
@@ -124,9 +135,8 @@
 }
 
 .btn__submit{
+    width: 100%;
     margin-top: 15px;
-    background: #BBD6FE;
-    color: #F3F3F3;
 }
 
 .mainBlock{
@@ -136,19 +146,19 @@
     min-height: 100% !important;
 }
 
-.returnButton{
+.btn__return{
     margin: 20px auto;
-    top: 20px;
     width: 120px;
-    background: #BBD6FE;
-    color: #fff;
 }
 
-.historyButton{
-    margin: 0 auto;
+.btn__edit{
+    margin-top: 20px;
+    width: 290px;
+}
+
+.btn__history{
     width: 200px;
     background: #50cb6c;
-    color: #fff;
 }
 
 .dateBlock{
@@ -219,7 +229,7 @@
     background: #fff;
 }
 
-.paymentBlock_btn{
+.btn__paymentBlock{
     margin: 15px auto;
     width: 200px;
     background: #50cb6c;
@@ -367,6 +377,12 @@
     font-size: 12px;
     color: #FFF;
     text-align: center;
+}
+
+.linkBlock__changePassword{
+    font-size: 14px;
+    margin-top: 10px;
+    color: #007CEE;
 }
 
 .checkboxLabel{
@@ -611,6 +627,16 @@
     text-align: center;
 }
 
+.iconLink{
+    cursor: pointer;
+}
+
+.icon__edit{
+    width: 20px;
+    height: 20px;
+    fill: #007CEE;
+}
+
 @keyframes slideIn {
     100% {
         z-index: 100;
@@ -669,18 +695,25 @@
 
 @media (max-width: 550px) {
 
-    input[type="date"]:before {
+    .dateBlock_input:before {
         content: attr(placeholder) !important;
     }
 
-    input[type="date"]:focus:before {
+    .dateBlock_input:focus:before {
         content: '' !important;
     }
 
-    input[type="date"] {
+    .dateBlock_input {
         display: flex;
+        margin: 10px auto;
+        width: 100px;
     }
-    .historyButton {
+
+    .dateBlock_period{
+        width: 180px;
+    }
+
+    .btn__history {
         margin-top: 20px;
     }
     .linkBlock__out{

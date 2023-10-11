@@ -82,7 +82,7 @@ class AdminPanelController {
                 }
                 else{
                     // const {id} = jwt.verify(token, JWTKEY);
-                    const sql_insertStudent = `INSERT INTO student (name, email, balance, phone, password, FK_course, FK_messenger, FK_aim, FK_master) VALUES (?,?,?,?,?,?,?,?,?)`;
+                    const sql_insertStudent = `INSERT INTO student (name, email, balance, personal_phone, password, FK_course, FK_messenger, FK_aim, FK_master) VALUES (?,?,?,?,?,?,?,?,?)`;
                     const password = help.generatePassword(8);
                     const hashPassword = bcrypt.hashSync(password, 7);
                     db.query(sql_insertStudent, [name, email, 0, phone, hashPassword, course, messenger, aim, 1], function(err, results) {

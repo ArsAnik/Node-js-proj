@@ -20,6 +20,9 @@ router.get('/login',
     authStudentMiddleware,
     AuthController.show_login)
 
+router.get('/passwordRestore',
+    AuthController.show_restore)
+
 router.get('/panel/:wd', [
     roleMiddleware(['student'])
     ], PanelController.show_panel)
@@ -31,5 +34,17 @@ router.get('/payment', [
 router.get('/history', [
     roleMiddleware(['student'])
 ], PanelController.show_history)
+
+router.get('/profile', [
+    roleMiddleware(['student'])
+], PanelController.show_profile)
+
+router.get('/editPassword', [
+    roleMiddleware(['student'])
+], PanelController.show_editPassword)
+
+router.get('/editEmail', [
+    roleMiddleware(['student'])
+], PanelController.show_editEmail)
 
 module.exports = router

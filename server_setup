@@ -108,3 +108,154 @@ npm install nodemon -g
 Чтобы вернуться к сессии screen, используйте команду screen -r session_name.
 
 
+Настройка почтового сервера:
+1: Установка Postfix
+Чтобы установить Postfix, а вместе с ним и ряд других программ, необходимых для настройки почты, просто установите пакет mailutils.
+
+Обновите индекс пакетов:
+
+sudo apt update
+
+Затем установите mailtuils:
+
+sudo apt install mailutils
+
+После этого установите postfix:
+
+sudo apt install postfix
+
+В конце установки будет предложено выбрать тип настройки.
+Рекомендуется выбрать стандартную опцию Internet Site. Для этого нажмите TAB и ENTER.
+
+
+Explain
+Please select the mail configuration type that best meets your needs.
+[…] General type of mail configuration:
+No configuration
+Internet site
+Internet with smarthost
+Satellite system
+Local only
+
+После этого программа предложит выбрать имя почты, которое определяется параметром System mail name.
+Это поле должно совпадать с именем сервера, которое вы выбрали при его создании. Укажите имя, а затем нажмите TAB и ENTER.
+Если в поле автоматически введён поддомен типа subdomain.example.com, замените его доменом example.com.
+
+The ‘mail name’ is the domain name used to ‘qualify’ _ALL_ mail addresses without a domain name.
+[…] System mail name:
+
+2: Настройка Postfix
+Теперь нужно настроить Postfix для отправки сообщений с локального хоста.
+
+Для этого Postfix должен прослушивать интерфейс loopback – это виртуальный сетевой интерфейс, который используется сервером для внутреннего взаимодействия.
+Откройте конфигурационный файл Postfix в текстовом редакторе:
+
+sudo nano /etc/postfix/main.cf
+
+Найдите такой раздел:
+
+
+Explain
+. . .
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+. . .
+
+Измените значение строки inet_interfaces = all на loopback-only.
+
+
+Explain
+. . .
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = loopback-only
+. . .
+
+После этого нужно отредактировать директиву mydestination.
+Она задаёт список доменов, почта которых должна быть доставлена через локальный агент local_transport.
+По умолчанию список выглядит примерно так:
+
+
+Explain
+/etc/postfix/main.cf
+. . .
+mydestination = $myhostname, example.com, localhost.com, , localhost
+. . .
+
+Сам postfix рекомендует вместо стандартного списка использовать этот:
+
+
+Explain
+/etc/postfix/main.cf
+. . .
+mydestination = $myhostname, localhost.$mydomain, $mydomain
+. . .
+
+Сохраните и закройте файл.
+
+Примечание: Если вы разместили несколько доменов на одном сервере, остальные домены можно добавить в настройки Postfix (mydestination). К сожалению, это выходит за рамки данного мануала.
+
+Перезапустите сервер Postfix:
+
+sudo systemctl restart postfix
+
+3: Тестирование SMTP-сервера
+Теперь нужно проверить, может ли Postfix отправлять сообщения на внешний электронный адрес. Для этого используется команда mail, которая также входит в пакет mailutils.
+
+Чтобы отправить тестовое сообщение, введите:
+
+echo "This is the body of the email" | mail -s "This is the subject line" your_email_address
+
+Примечание: Укажите другую тему и тело сообщения. Вместо your_email_address используйте валидный адрес электронной почты, это может быть gmail.com, fastmail.com, yahoo.com. Он также может принадлежать любому другому почтовому провайдеру.
+
+Проверьте почтовый ящик, куда было отправлено сообщение. Если сообщение не появилось, проверьте папку спама.
+
+При такой настройке в поле From будет указываться адрес 8host@example.com, где 8host – имя вашего пользователя системы Linux, а example.com – имя хоста. Если вы измените имя пользователя, адрес в поле From тоже изменится.
+
+4: Пересылка почты
+Осталось только настроить пересылку почты (или форвардинг), чтобы сервер мог предавать сообщения, отправленные пользователю root, на ваш персональный внешний адрес.
+
+Чтобы Postfix отправлял сообщения, сгенерированные системой, на ваш почтовый адрес, отредактируйте файл /etc/aliases.
+
+sudo nano /etc/aliases
+
+В стандартной установке Debian 10 этот файл выглядит так:
+
+
+Explain
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+news: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+
+Директива postmaster:
+root  передает сообщения системы пользователю root.
+Теперь нужно сделать так, чтобы сообщения перенаправлялись на ваш адрес электронной почты. Для этого измените файл:
+
+Explain
+mailer-daemon: postmaster
+postmaster:    root
+root:          your_email_address
+. . .
+
+Замените your_email_address  своим адресом электронной почты. Сохраните и закройте файл. Чтобы изменения вступили в силу, введите команду:
+
+sudo newaliases
+
+Теперь протестируйте пересылку, отправив сообщение пользователю root:
+
+echo "This is the body of the email" | mail -s "This is the subject line" root
+
+Это сообщение должно появиться в вашем почтовом ящике (если его нет – проверьте папку спама).
+
+Заключение
+Теперь у вас есть почтовый сервер Postfix для передачи сообщений. После установки Postfix рекомендуется защитить сервер от спама.

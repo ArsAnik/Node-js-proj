@@ -208,6 +208,113 @@ class StudentPanelController {
             return res.redirect('/error/Ошибка загрузки!');
         }
     }
+
+    async show_profile(req, res){
+        try {
+            // const token = req.headers.cookie.split('=')[1];
+            // const {id} = jwt.verify(token, JWTKEY);
+            const student_id = 20;
+            const sql_student = `SELECT * FROM student s
+                    LEFT JOIN course c ON s.FK_course = c.id
+                    WHERE s.id=?`;
+            db.query(sql_student, student_id, function(err, student) {
+                if(err) {
+                    console.log(err);
+                    return res.redirect('/error/Ошибка базы данных!');
+                }
+                else if(student.length === 0){
+                    return res.status(403).redirect('/error/Страница не существует!');
+                }
+                else
+                {
+                    return res.render("student/profile", {
+                        title: "Профиль",
+                        student: student[0]
+                    });
+                }
+            })
+        }
+        catch (e)
+        {
+            console.log(e);
+            return res.redirect('/error/Ошибка загрузки!');
+        }
+    }
+
+    async show_editPassword(req, res){
+        try {
+            return res.render("student/edit_password", {
+                title: "Изменение пароля",
+                prevPage: "/student/profile"
+            });
+        }
+        catch (e)
+        {
+            console.log(e);
+            return res.redirect('/error/Ошибка загрузки!');
+        }
+    }
+
+    async show_editEmail(req, res){
+        try {
+            return res.render("student/edit_email", {
+                title: "Изменение почты"
+            });
+        }
+        catch (e)
+        {
+            console.log(e);
+            return res.redirect('/error/Ошибка загрузки!');
+        }
+    }
+
+    async edit_information(req, res){
+        try {
+            const nodemailer = require('nodemailer');
+
+            // const transporter = nodemailer.createTransport({
+            //     host: "smtp.repcentr1.ru",
+            //     port: 465,
+            //     secure: true,
+            //     auth: {
+            //         user: "REPLACE-WITH-YOUR-ALIAS@YOURDOMAIN.COM",
+            //         pass: "REPLACE-WITH-YOUR-GENERATED-PASSWORD",
+            //     },
+            // });
+            //
+            // let testEmailAccount = await nodemailer.createTestAccount();
+            //
+            // console.log(testEmailAccount);
+            //
+            // let transporter = nodemailer.createTransport({
+            //     host: 'smtp.repcentr1.ru',
+            //     port: 587,
+            //     secure: false,
+            //     auth: {
+            //         user: testEmailAccount.user,
+            //         pass: testEmailAccount.pass,
+            //     },
+            // });
+
+            // console.log(transporter);
+
+            // let result = await transporter.sendMail({
+            //     from: '"Node js" <nodejs@example.com>',
+            //     to: 'user@example.com, user@example.com',
+            //     subject: 'Message from Node js',
+            //     text: 'This message was sent from Node js server.',
+            //     html:
+            //         'This <i>message</i> was sent from <strong>Node js</strong> server.',
+            // });
+            //
+            // console.log(result);
+        }
+        catch (e)
+        {
+            console.log(e);
+            return res.redirect('/error/Ошибка загрузки!');
+        }
+    }
 }
 
 module.exports = new StudentPanelController()

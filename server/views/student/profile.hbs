@@ -1,0 +1,33 @@
+<div class="mainBlock">
+    <a class="btn__return btn" href="/student/panel/currentWeek">
+        &#9668; Назад
+    </a>
+    {{#if student}}
+        <div class="studentInf">
+            <span class="studentInf_item studentInf_name">{{student.name}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">
+                Email:</b> {{student.email}}
+                <a class="iconLink" href="/student/editEmail">
+                    <svg class="icon__edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.000000 50.000000">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)">
+                        <path d="M307 382 c-107 -107 -119 -123 -124 -162 l-6 -43 43 6 c39 5 55 17
+                        162 124 65 65 118 125 118 134 0 19 -41 59 -61 59 -8 0 -67 -53 -132 -118z
+                        m153 73 c10 -12 10 -19 2 -27 -15 -15 -48 14 -38 31 10 15 21 14 36 -4z m-123
+                        -152 c-90 -89 -127 -111 -127 -77 0 9 41 59 92 110 88 90 92 93 110 77 19 -17
+                        16 -20 -75 -110z"/>
+                        <path d="M17 402 c-15 -16 -17 -45 -17 -194 0 -157 2 -177 18 -191 16 -15 45
+                        -17 194 -17 220 0 208 -9 208 158 0 101 -3 122 -15 122 -12 0 -15 -23 -17
+                        -122 l-3 -123 -175 0 -175 0 0 175 0 175 123 3 c99 2 122 5 122 17 0 12 -22
+                        15 -123 15 -107 0 -126 -2 -140 -18z"/>
+                        </g>
+                        </svg>
+                </a>
+            </span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Телефон:</b> {{student.phone}}</span>
+            <span class="studentInf_item"><b class="studentInf_item__bold">Класс:</b> {{student.course_number}}</span>
+        </div>
+    {{/if}}
+    <a class="linkBlock linkBlock__changePassword" href="/student/editPassword">
+        Изменить пароль
+    </a>
+</div>

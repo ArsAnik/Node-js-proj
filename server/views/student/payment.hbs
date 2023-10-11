@@ -1,5 +1,5 @@
 <div class="mainBlock">
-    <a class="returnButton btn" href="/student/panel/currentWeek">
+    <a class="btn__return btn" href="/student/panel/currentWeek">
         &#9668; Назад
     </a>
     <div class="paymentBlock">
@@ -10,7 +10,7 @@
         </span>
         <form class="paymentBlock_form">
             <input type="text" class="paymentBlock_sum" placeholder="Введите желаемую сумму в рублях" min="0"/>
-            <button type="submit" class="paymentBlock_btn btn">оплатить</button>
+            <button type="submit" class="btn__paymentBlock btn">оплатить</button>
         </form>
     </div>
     <span class="labelBlock">
@@ -46,7 +46,7 @@
     {{else}}
         <div class="infBlock">Все уроки оплачены ✅</div>
         {{/if}}
-    <a class="historyButton btn" href="/student/history">
+    <a class="btn__history btn" href="/student/history">
         История оплат
     </a>
 </div>

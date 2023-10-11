@@ -23,6 +23,20 @@ class StudentAuthController {
             return res.redirect('/error/Ошибка загрузки!');
         }
     }
+
+    async show_restore(req, res){
+        try {
+            res.render("student/edit_password", {
+                title: 'Восстановление пароля',
+                prevPage: "/student/login"
+            });
+        }
+        catch (e)
+        {
+            console.log(e);
+            return res.redirect('/error/Ошибка загрузки!');
+        }
+    }
     async student_login(req, res){
         try {
             const errors = validationResult(req);
